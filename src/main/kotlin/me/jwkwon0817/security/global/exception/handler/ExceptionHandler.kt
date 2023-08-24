@@ -1,6 +1,7 @@
 package me.jwkwon0817.security.global.exception.handler
 
-import me.jwkwon081.chat.global.exception.type.DuplicateEmailException
+import me.jwkwon0817.security.global.exception.type.DuplicateEmailException
+import me.jwkwon0817.security.global.exception.type.InvalidTokenException
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -17,5 +18,10 @@ class ExceptionHandler {
     @ExceptionHandler(BadCredentialsException::class)
     protected fun handleBadCredentialsException(e: BadCredentialsException): ResponseEntity<String> {
         return ResponseEntity.badRequest().body("이메일 또는 비밀번호가 일치하지 않습니다.")
+    }
+
+    @ExceptionHandler(InvalidTokenException::class)
+    protected fun handleInvalidTokenException(e: InvalidTokenException): ResponseEntity<String> {
+        return ResponseEntity.badRequest().body(e.message)
     }
 }

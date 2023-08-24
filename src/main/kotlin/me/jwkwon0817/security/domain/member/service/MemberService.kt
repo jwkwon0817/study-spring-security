@@ -2,12 +2,12 @@ package me.jwkwon0817.security.domain.member.service
 
 import jakarta.transaction.Transactional
 import me.jwkwon081.chat.global.authority.TokenInfo
-import me.jwkwon081.chat.global.exception.type.DuplicateEmailException
 import me.jwkwon0817.security.domain.member.dto.LoginDtoReq
 import me.jwkwon0817.security.domain.member.dto.MemberDtoReq
 import me.jwkwon0817.security.domain.member.dto.MemberDtoRes
 import me.jwkwon0817.security.domain.member.entity.Member
 import me.jwkwon0817.security.domain.member.repository.MemberRepository
+import me.jwkwon0817.security.global.exception.type.DuplicateEmailException
 import me.jwkwon0817.security.global.provider.JwtTokenProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -55,10 +55,8 @@ class MemberService(
         logger.info("sign in password (origin): ${loginDto.password}")
         logger.info("sign in password: ${passwordEncoder.encode(loginDto.password)}")
 
-        val member = customUserDetailsService.loadUserByUsername(loginDto.email)
-
         val authenticationToken =
-            UsernamePasswordAuthenticationToken(member.username, member.password)
+            UsernamePasswordAuthenticationToken(loginDto.email, loginDto.password)
         val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
 
 

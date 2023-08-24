@@ -4,7 +4,7 @@ import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import io.jsonwebtoken.security.SecurityException
-import me.jwkwon081.chat.global.exception.type.InvalidTokenException
+import me.jwkwon0817.security.global.exception.type.InvalidTokenException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 
-const val ACCESS_TOKEN_VALID_TIME: Long = 1000 * 30
+const val ACCESS_TOKEN_VALID_TIME: Long = 1000 * 60
 
 @Component
 class JwtTokenProvider {

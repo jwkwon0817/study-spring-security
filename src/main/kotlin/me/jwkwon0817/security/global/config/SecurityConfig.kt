@@ -31,7 +31,8 @@ class SecurityConfig(
         }
 
         http.authorizeHttpRequests { requests ->
-            requests.requestMatchers("/api/user/signup").anonymous()
+            requests.requestMatchers("/api/user/signup", "/api/user/signin").permitAll()
+            requests.requestMatchers("/api/user/me").authenticated()
             requests.anyRequest().permitAll()
         }
 

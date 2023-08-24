@@ -1,3 +1,3 @@
-package me.jwkwon081.chat.global.exception.type
+package me.jwkwon0817.security.global.exception.type
 
 class InvalidTokenException(message: String) : RuntimeException(message)
